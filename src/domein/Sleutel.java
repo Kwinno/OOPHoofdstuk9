@@ -26,12 +26,12 @@ public class Sleutel extends Voorwerp {
         stelDeurIn(deur);
     }
 
-    public int getAantalInOmloop() {
+    public static int getAantalInOmloop() {
         return aantalInOmloop;
     }
 
-    public void setAantalInOmloop(int aantalInOmloop) {
-        this.aantalInOmloop = aantalInOmloop;
+    public static void setAantalInOmloop(int aantalInOmloop) {
+        Sleutel.aantalInOmloop = aantalInOmloop;
     }
 
     private void stelDeurIn(int deur) {
@@ -43,13 +43,13 @@ public class Sleutel extends Voorwerp {
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return super.toString() + String.format(" past op deur %d.%nEr zijn %d sleutel(s) in omloop.",deur, aantalInOmloop); //To change body of generated methods, choose Tools | Templates.
     }
 
-    //@Override
-    //protected void finalize() throws Throwable {
-     //aantalInOmloop--;
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        aantalInOmloop--;//To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

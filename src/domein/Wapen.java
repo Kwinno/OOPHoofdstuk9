@@ -16,9 +16,13 @@ public class Wapen extends Voorwerp{
 
     public Wapen( String naam, double gewicht, int niveau, int kracht, boolean gebruikt) {
         super(naam, gewicht, niveau);
-        stelNiveauIn(niveau);
-        stelKrachtIn(kracht);
-        stelGebruiktIn(gebruikt);
+        if(niveau > 5)
+            throw new IllegalArgumentException("Niveau moet tussen 1 en 5 zijn");
+        if(kracht < 0)
+            throw new IllegalArgumentException("Kracht moet positief zijn");
+        super.setNiveau(niveau);
+        this.kracht = kracht;
+        this.gebruikt = gebruikt;
     }
 
     public int getKracht() {
@@ -26,7 +30,10 @@ public class Wapen extends Voorwerp{
     }
 
     public void setKracht(int kracht) {
-        stelKrachtIn(kracht);
+            if(kracht >= 0)
+        this.kracht = kracht;
+        else
+            throw new IllegalArgumentException("Kracht moet positief zijn");
     }
 
     public boolean isGebruikt() {
@@ -34,36 +41,23 @@ public class Wapen extends Voorwerp{
     }
 
     public void setGebruikt(boolean gebruikt) {
-        stelGebruiktIn(gebruikt);
-    }
-    
-
-    public void stelKrachtIn(int kracht) {
-        if(kracht >= 0)
-        this.kracht = kracht;
-        else
-            throw new IllegalArgumentException("Kracht moet positief zijn");
-    }
-
-    public void stelGebruiktIn(boolean gebruikt) {
         if(gebruikt == true)        
-        this.gebruikt = gebruikt;
+            this.gebruikt = gebruikt;
         else
             throw new IllegalArgumentException("Wapen is niet gebruikt");
     }
 
-    @Override
-    public void stelNiveauIn(int niveau) {
-        if(niveau <= 5 && niveau > 0)
-        super.stelNiveauIn(niveau); //To change body of generated methods, choose Tools | Templates.
-        else
-            throw new IllegalArgumentException("Niveau moet tussen 1 en 5 zijn");
-    }
+
 
     @Override
     public String toString() {
         return super.toString() + String.format(" en met kracht %d %s gebruikt.",kracht,(gebruikt?"al":"nog niet")); //To change body of generated methods, choose Tools | Templates.
     }
-
     
+    @Override
+    public void setNiveau(int niveau) {
+      if( niveau > 5)
+         throw new IllegalArgumentException("Niveau moet tussen 1 en 5 zijn");
+     super.setNiveau(niveau);
+      }
 }

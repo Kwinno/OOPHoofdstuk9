@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package h9_oefening;
+package main;
 
-public class H9_Oefening {
+import ui.H9Oef1;
 
-    /**
-     * @param args the command line arguments
-     */
+public class StartUp {
     public static void main(String[] args) {
-        // TODO code application logic here
+        H9Oef1 oef = new H9Oef1();
+        oef.start();
     }
-    
 }

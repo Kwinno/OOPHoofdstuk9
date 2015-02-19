@@ -13,28 +13,23 @@ public class Voorwerp {
 
     public Voorwerp(String naam, double gewicht, int niveau) {
         this.naam = naam;
-        stelNiveauIn(niveau);
-        setGewicht(gewicht);
+        if(niveau < 1 || niveau > 10)
+            throw new IllegalArgumentException("Niveau moet tussen 1 en 10 zijn");
+        if(gewicht < 0 || gewicht >= 1000)
+            throw new IllegalArgumentException("Gewicht moet postief zijn en kleiner dan 1000");
+    this.niveau = niveau;
+    this.gewicht = gewicht;
     }
     
 
     public void setNiveau(int niveau) {
-        stelNiveauIn(niveau);
-    }
-
-    public void setGewicht(double gewicht) {
-        stelGewichtIn(gewicht);
-    }
-
-    public void stelNiveauIn(int niveau) {
-                if(niveau >= 1 && niveau <= 10)
+    if(niveau >= 1 && niveau <= 10)
         this.niveau = niveau;
         else
             throw new IllegalArgumentException("Niveau moet tussen 1 en 10 zijn");
-    }
-    
+    }    
 
-    public void stelGewichtIn(double gewicht) {
+    public void setGewicht(double gewicht) {
         if(gewicht <= 1000 && gewicht >= 0)
         this.gewicht = gewicht;
         else
